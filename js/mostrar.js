@@ -11,6 +11,7 @@ export default function mostrarCalendario(calendario, meses, pantalla) {
       let dia = tarea.date.getDate();
       let horas = tarea.date.getHours();
       let minutos = tarea.date.getMinutes();
+
       if (dia < 10) dia = '0' + dia;
       if (horas < 10) horas = '0' + horas;
       if (minutos < 10) minutos = '0' + minutos;
