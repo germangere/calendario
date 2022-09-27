@@ -1,4 +1,8 @@
-export default function eliminar(calendario, pantalla) {
+import mostrarCalendario from "./mostrar.js";
+
+const pantalla = document.getElementById('pantalla');
+
+export default function eliminar(calendario) {
   let mensaje = `<h3>Eliminar actividad</h3>`;
   pantalla.innerHTML = `
     ${mensaje}
@@ -10,9 +14,8 @@ export default function eliminar(calendario, pantalla) {
   `;
 
   const $form = document.getElementById('formEliminar');
-  const $submit = $form[$form.length - 1];
 
-  $submit.addEventListener('click', (e) => {
+  $form.addEventListener('submit', (e) => {
     e.preventDefault();
     const value = $form[0].value.split('-');
     const anio = parseInt(value[0]);
@@ -20,7 +23,13 @@ export default function eliminar(calendario, pantalla) {
     let valido = true;
 
     if (!anio || mes + 1 == 0) {
-      alert('Completa el mes y año a buscar');
+      Swal.fire({
+        icon: 'warning',
+        text: 'Completa el mes y año a buscar',
+        title: 'Faltan datos',
+        timer: 3000,
+        confirmButtonText: 'OK'
+      });
       valido = false;
     }
 
@@ -38,30 +47,47 @@ export default function eliminar(calendario, pantalla) {
           idAEliminar.push(index);
           confirmacion += `<p>ID: <strong>${index}</strong> - ${tarea.actividad}</p>`;
         }
-        console.log(idAEliminar)
         mensaje += `
-        <h4>Confirma el ID de la tarea a eliminar:</h4>
-        ${confirmacion}
-        <form>
-          <input type="number" name="number">
-          <input type="submit" value="Eliminar">
-        </form>
-      `;
+          <h4>Confirma el ID de la tarea a eliminar:</h4>
+          ${confirmacion}
+          <form>
+            <input type="number" name="number">
+            <input type="submit" value="Eliminar">
+          </form>
+        `;
         pantalla.innerHTML = mensaje;
 
         let $formConf = document.querySelector('form');
-        let $confBtn = document.querySelector('input[value="Eliminar"]');
 
-        $confBtn.addEventListener('click', (e) => {
+        $formConf.addEventListener('submit', (e) => {
           e.preventDefault();
           let id = parseInt($formConf[0].value);
           if (idAEliminar.find(el => el == id)) {
             calendario.splice(id, 1);
             localStorage.setItem('calendario', JSON.stringify(calendario));
-            $formConf.reset();
-            pantalla.innerHTML = '<h3>Actividad eliminada correctamente 🗑</h3>';
+            Toastify({
+              text: 'Actividad eliminada correctamente',
+              duration: 3000,
+              gravity: "bottom",
+              position: "center",
+              stopOnFocus: true,
+              style: {
+                fontSize: '1.5rem',
+                fontWeight: 900,
+                borderRadius: '15px',
+                background: 'rgb(255, 136, 0)',
+                color: 'rgb(49, 49, 49)'
+              }
+            }).showToast();
+            mostrarCalendario(calendario);
           } else {
-            alert('Error de ID, verificá tu confirmación');
+            Swal.fire({
+              icon: 'warning',
+              text: 'Error de ID, verificá tu confirmación',
+              title: 'Error',
+              timer: 3000,
+              confirmButtonText: 'OK'
+            });
           }
         })
       }
