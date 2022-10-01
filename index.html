@@ -11,18 +11,35 @@
 </head>
 
 <body>
-  <h1>Calendario JS</h1>
+  <main>
+    <h1>Calendario JS</h1>
 
-  <div class="container">
-    <nav>
-      <button id="mostrar">Mostrar calendario</button>
-      <button id="agregar">Agregar tarea</button>
-      <button id="buscar">Buscar actividades por mes</button>
-      <button id="eliminar">Eliminar una actividad</button>
-    </nav>
-    <div id="pantalla">
+    <div class="container">
+      <nav>
+        <button id="realizadas" title="Realizadas">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>Realizadas</span>
+        </button>
+        <button id="buscar" title="Buscar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Buscar</span>
+        </button>
+        <button id="agregar" title="Agregar tarea">
+          <i class="fa-solid fa-plus"></i>
+          <span>Agregar</span>
+        </button>
+        <button id="mostrar" title="Mostrar calendario">
+          <i class="fa-regular fa-calendar"></i>
+          <span>Mostrar</span>
+        </button>
+      </nav>
+      <div id="pantalla"></div>
     </div>
-  </div>
+  </main>
+  <footer>
+    <p>Desarrollado para ayudarte en tus tareas. Uso libre 😉</p>
+  </footer>
+  <script src="https://kit.fontawesome.com/e2b02d9e00.js" crossorigin="anonymous"></script>
   <script src="./index.js" type="module"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.all.min.js"></script>

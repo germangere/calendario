@@ -62,7 +62,7 @@ export default function eliminar(calendario) {
         $formConf.addEventListener('submit', (e) => {
           e.preventDefault();
           let id = parseInt($formConf[0].value);
-          if (idAEliminar.find(el => el == id)) {
+          if (idAEliminar.find(el => el === id) !== undefined) {
             calendario.splice(id, 1);
             localStorage.setItem('calendario', JSON.stringify(calendario));
             Toastify({
@@ -72,14 +72,17 @@ export default function eliminar(calendario) {
               position: "center",
               stopOnFocus: true,
               style: {
+                marginLeft: '10px',
+                marginRight: '10px',
+                textAlign: 'center',
                 fontSize: '1.5rem',
                 fontWeight: 900,
                 borderRadius: '15px',
-                background: 'rgb(255, 136, 0)',
-                color: 'rgb(49, 49, 49)'
+                background: '#69d2e7',
+                color: '#fff'
               }
             }).showToast();
-            mostrarCalendario(calendario);
+            mostrarCalendario(calendario, false);
           } else {
             Swal.fire({
               icon: 'warning',

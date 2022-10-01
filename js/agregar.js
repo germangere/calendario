@@ -5,6 +5,7 @@ class Tarea {
   constructor(date, actividad) {
     this.date = date;
     this.actividad = actividad;
+    this.realizada = false;
   }
 }
 
@@ -64,14 +65,17 @@ export default function agregarTarea(calendario) {
         position: "center",
         stopOnFocus: true,
         style: {
+          marginLeft: '10px',
+          marginRight: '10px',
+          textAlign: 'center',
           fontSize: '1.5rem',
           fontWeight: 900,
           borderRadius: '15px',
-          background: 'rgb(255, 136, 0)',
-          color: 'rgb(49, 49, 49)'
+          background: '#69d2e7',
+          color: '#fff'
         }
       }).showToast();
-      mostrarCalendario(calendario);
+      mostrarCalendario(calendario, false);
     }
   })
 }
