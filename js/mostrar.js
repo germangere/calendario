@@ -1,4 +1,4 @@
-import { eliminarDesdeVista, marcarPendiente, marcarRealizada, mostrarOpciones } from "./gestion.js";
+import { mostrarOpciones } from "./gestion.js";
 
 const pantalla = document.getElementById('pantalla');
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -64,7 +64,4 @@ export default function mostrarCalendario(calendario, realizadas) {
   }
   pantalla.innerHTML = mensaje;
   mostrarOpciones();
-  eliminarDesdeVista(calendario);
-  marcarRealizada(calendario);
-  marcarPendiente(calendario);
 }

@@ -1,5 +1,6 @@
 import agregarTarea from "./js/agregar.js";
 import buscarPorMes from "./js/buscar.js";
+import { eliminarDesdeVista, marcarPendiente, marcarRealizada } from "./js/gestion.js";
 import mostrarCalendario from "./js/mostrar.js";
 
 let calendario = [];
@@ -27,3 +28,6 @@ $mostrar.addEventListener('click', () => mostrarCalendario(calendario, false));
 $agregar.addEventListener('click', () => agregarTarea(calendario));
 $buscar.addEventListener('click', () => buscarPorMes(calendario));
 $realizadas.addEventListener('click', () => mostrarCalendario(calendario, true));
+eliminarDesdeVista(calendario);
+marcarRealizada(calendario);
+marcarPendiente(calendario);
