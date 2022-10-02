@@ -7,13 +7,25 @@ const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', '
 export default function mostrarCalendario(calendario, realizadas) {
   calendario.sort((a, b) => a.date - b.date);
   let aMostrar = calendario.filter((el) => el.realizada === realizadas)
-  if (aMostrar.length === 0) {
-    return pantalla.innerText = 'Tu calendario está vacío!\nAgrega tareas para disfrutar esta app 😉';
+  if (aMostrar.length === 0 && realizadas) {
+    return pantalla.innerHTML = '<div class="msjCont"><p class="msj">No tenés tareas realizadas</p></div>';
   }
-
+  if (aMostrar.length === 0 && !realizadas) {
+    return pantalla.innerHTML = '<div class="msjCont"><p class="msj">No tenés tareas por realizar!</p><p class="msj">Agregá tareas para disfrutar esta app 😉</p></div>';
+  }
+  let mensaje = '';
+  if (realizadas) {
+    mensaje += `<div class='realizadas'>Actividades realizadas</div>`
+    pantalla.innerHTML = mensaje;
+  }
+  pantalla.innerHTML = mensaje;
+  if (realizadas) {
+    mensaje += '<div class="tareasCont realizadasCont">';
+  } else {
+    mensaje += '<div class="tareasCont">';
+  }
   let mes = '';
   let anio = '';
-  let mensaje = '';
   for (const tarea of aMostrar) {
     let { date, actividad } = tarea;
     let id = calendario.indexOf(tarea)

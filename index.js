@@ -22,7 +22,7 @@ const $buscar = document.getElementById('buscar');
 const $realizadas = document.getElementById('realizadas');
 
 const pantalla = document.getElementById('pantalla');
-pantalla.innerHTML = '<h3>Bienvenido/a!</h3><p>😃 Qué haremos hoy? 📅<p>';
+pantalla.innerHTML = '<div class="msjCont"><h3 id="bienvenida">Bienvenido/a!</h3><p>😃 Qué haremos hoy? 📅</p></div>';
 
 $mostrar.addEventListener('click', () => mostrarCalendario(calendario, false));
 $agregar.addEventListener('click', () => agregarTarea(calendario));
