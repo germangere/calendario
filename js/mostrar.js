@@ -1,8 +1,9 @@
 import { mostrarOpciones } from "./gestion.js";
+import api from './api.js';
 
 const pantalla = document.getElementById('pantalla');
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
+const feriados = api();
 
 export default function mostrarCalendario(calendario, realizadas) {
   calendario.sort((a, b) => a.date - b.date);
@@ -27,7 +28,7 @@ export default function mostrarCalendario(calendario, realizadas) {
   let mes = '';
   let anio = '';
   for (const tarea of aMostrar) {
-    let { date, actividad } = tarea;
+    let { date, actividad, ingresaHora } = tarea;
     let id = calendario.indexOf(tarea)
     let dia = date.getDate();
     let horas = date.getHours();
@@ -47,7 +48,7 @@ export default function mostrarCalendario(calendario, realizadas) {
       let encabezado = meses[mes].toUpperCase();
       mensaje += `<div class="month">${encabezado}</div>
                     <div class='activity' data-id='${id}'>
-                      <p class='desc'><strong>${dia}</strong> - <strong>${horas}:${minutos} hs.</strong> - ${actividad}</p>
+                      <p class='desc'><strong>${dia}</strong>${ingresaHora ? ` - <strong>${horas}:${minutos} hs.</strong>` : ''} - ${actividad}</p>
                       <div class='btnEliminar'  title='Eliminar'>
                         <i class="fa-solid fa-trash"></i>
                       </div>`;
@@ -61,7 +62,7 @@ export default function mostrarCalendario(calendario, realizadas) {
 
     } else {
       mensaje += `<div class='activity' data-id='${id}'>
-                    <p class='desc'><strong>${dia}</strong> - <strong>${horas}:${minutos} hs.</strong> - ${actividad}</p>
+                    <p class='desc'><strong>${dia}</strong>${ingresaHora ? ` - <strong>${horas}:${minutos} hs.</strong>` : ''} - ${actividad}</p>
                     <div class='btnEliminar'  title='Eliminar'>
                       <i class="fa-solid fa-trash"></i>
                     </div>`;

@@ -2,10 +2,11 @@ import mostrarCalendario from "./mostrar.js";
 
 const pantalla = document.getElementById('pantalla');
 class Tarea {
-  constructor(date, actividad) {
+  constructor(date, actividad, ingresaHora) {
     this.date = date;
     this.actividad = actividad;
     this.realizada = false;
+    this.ingresaHora = ingresaHora;
   }
 }
 
@@ -26,6 +27,7 @@ export default function agregarTarea(calendario) {
     let fecha = $form[0].value.split('-');
     let hora = $form[1].value.split(':');
     let actividad = $form[2].value;
+    let ingresaHora = true;
     let valido = true;
 
     for (const valor of fecha) {
@@ -36,8 +38,7 @@ export default function agregarTarea(calendario) {
     }
     for (const valor of hora) {
       if (!valor) {
-        sweetAlert('hora');
-        valido = false;
+        ingresaHora = false;
       }
     }
     if (!actividad) {
@@ -51,10 +52,10 @@ export default function agregarTarea(calendario) {
           fecha[0],
           fecha[1] - 1,
           fecha[2],
-          hora[0],
-          hora[1]
+          hora[0] || '',
+          hora[1] || ''
         ),
-        actividad);
+        actividad, ingresaHora);
       calendario.push(tarea);
       localStorage.setItem('calendario', JSON.stringify(calendario));
       $form.reset();
