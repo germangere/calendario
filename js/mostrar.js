@@ -3,7 +3,6 @@ import api from './api.js';
 
 const pantalla = document.getElementById('pantalla');
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-const feriados = api();
 
 export default function mostrarCalendario(calendario, realizadas) {
   calendario.sort((a, b) => a.date - b.date);
@@ -77,4 +76,5 @@ export default function mostrarCalendario(calendario, realizadas) {
   }
   pantalla.innerHTML = mensaje;
   mostrarOpciones();
+  api();
 }
