@@ -4,7 +4,7 @@ export default function api() {
   let anio = today.getFullYear();
   let mes = today.getMonth() + 1;
 
-  fetch(`http://nolaborables.com.ar/api/v2/feriados/${anio}`)
+  fetch(`https://nolaborables.com.ar/api/v2/feriados/${anio}`)
     .then((res) => res.json())
     .then((data) => {
       let feriadosDelMes = [];
