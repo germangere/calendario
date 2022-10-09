@@ -1,6 +1,7 @@
 import mostrarCalendario from "./mostrar.js";
 
 const pantalla = document.getElementById('pantalla');
+
 class Tarea {
   constructor(date, actividad, ingresaHora) {
     this.date = date;

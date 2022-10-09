@@ -214,6 +214,14 @@ span {
   font-weight: 900;
 }
 
+p .fa-check {
+  color: limegreen;
+}
+
+p .fa-hourglass-start {
+  color: goldenrod;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -238,9 +246,6 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-  /* border: 2px solid var(--naranja);
-  background-color: var(--gris);
-  color: var(--naranja); */
   box-shadow: 0 0 20px var(--naranja);
 }
 
@@ -280,12 +285,13 @@ footer {
 
   #pantalla {
     width: 60%;
+    display: flex;
+    flex-direction: column;
     max-height: calc(100vh - 12rem);
     overflow-y: hidden;
   }
 
   .tareasCont {
-    height: 85%;
     overflow-x: hidden;
     overflow-y: auto;
     padding-bottom: 16px;
@@ -302,7 +308,6 @@ footer {
   .tareasCont::-webkit-scrollbar-track {
     background: var(--gris);
     border-radius: 7px;
-    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 

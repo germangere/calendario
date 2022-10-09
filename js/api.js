@@ -7,10 +7,7 @@ export default function api() {
   fetch(`https://nolaborables.com.ar/api/v2/feriados/${anio}`)
     .then((res) => res.json())
     .then((data) => {
-      let feriadosDelMes = [];
-      data.forEach((el) => {
-        if (el.mes === mes) feriadosDelMes.push(el);
-      })
+      let feriadosDelMes = data.filter(feriado => feriado.mes === mes);
 
       let feriadosCont = document.createElement('div');
       let feriadosTitulo = document.createElement('h4');
@@ -38,5 +35,5 @@ export default function api() {
         pantalla.insertAdjacentElement("afterbegin", feriadosCont);
       }
     })
-    .catch((error) => console.log(error.message, error.name))
+    .catch((error) => console.warn(error.message, error.name))
 }

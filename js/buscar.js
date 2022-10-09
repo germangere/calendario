@@ -40,14 +40,15 @@ export default function buscarPorMes(calendario) {
         mensaje += `<h4>Resultados de ${meses[mes]} de ${anio}</h4>`;
         pantalla.innerHTML = mensaje;
         for (const tarea of result) {
-          let { date, actividad } = tarea;
+          let { date, actividad, realizada, ingresaHora } = tarea;
           let dia = date.getDate();
           let horas = date.getHours();
           let minutos = date.getMinutes();
           if (dia < 10) dia = '0' + dia;
           if (horas < 10) horas = '0' + horas;
           if (minutos < 10) minutos = '0' + minutos;
-          mensaje += `<p>Día ${dia} - ${horas}:${minutos} hs. - ${actividad}</p>`;
+          mensaje += `<p>${dia} - ${ingresaHora ? `${horas}:${minutos} hs. - ` : ''} ${actividad} 
+                    ${realizada ? '<i class="fa-solid fa-check" title="Realizada"></i>' : '<i class="fa-solid fa-hourglass-start" title="Pendiente"></i>'}</p>`;
           pantalla.innerHTML = mensaje;
         }
       }
